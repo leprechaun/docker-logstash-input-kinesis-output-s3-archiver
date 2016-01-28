@@ -18,6 +18,7 @@ usage () {
 [[ -z "$AWS_S3_REGION" ]] && usage AWS_S3_REGION && exit
 [[ -z "$AWS_KINESIS_REGION" ]] && usage AWS_KINESIS_REGION && exit
 [[ -z "$AWS_KINESIS_STREAM" ]] && usage AWS_KINESIS_STREAM && exit
+[[ -z "$AWS_KINESIS_APPLICATION_NAME" ]] && usage AWS_KINESIS_APPLICATION_NAME && exit
 
 sed \
 	-e "s,\${AWS_S3_BUCKET},${AWS_S3_BUCKET}," \
@@ -25,6 +26,7 @@ sed \
 	-e "s,\${AWS_S3_REGION},${AWS_S3_REGION}," \
 	-e "s,\${AWS_KINESIS_REGION},${AWS_KINESIS_REGION}," \
 	-e "s,\${AWS_KINESIS_STREAM},${AWS_KINESIS_STREAM}," \
+	-e "s,\${AWS_KINESIS_APPLICATION_NAME},${AWS_KINESIS_APPLICATION_NAME}," \
 	/config/logstash.conf.tpl > /config/logstash.conf
 
 /opt/logstash/bin/logstash -f /config/logstash.conf
